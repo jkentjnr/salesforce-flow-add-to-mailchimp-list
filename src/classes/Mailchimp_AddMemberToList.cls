@@ -92,8 +92,13 @@ public class Mailchimp_AddMemberToList
 
 	public class ExecuteActionRequest {
 
+        public ExecuteActionRequest() {}
+
         public ExecuteActionRequest(String apikey, String list_id, String email_address, String status, String firstname, String lastname,
             String field1_name, String field1_value, String field2_name, String field2_value, String field3_name, String field3_value, String field4_name, String field4_value, String field5_name, String field5_value) {
+
+            if (status == null)
+                status = 'subscribed';
 
             this.apikey = apikey;
             this.list_id = list_id;
@@ -119,16 +124,16 @@ public class Mailchimp_AddMemberToList
         @InvocableVariable(label='List ID' description='Mailchimp List ID' required=true)
         public String list_id;
 
-        @InvocableVariable(label='API Key' description='Email Address' required=true)
+        @InvocableVariable(label='Email Address' description='Email Address' required=true)
         public String email_address;
 
         @InvocableVariable(label='Status' description='Mailchimp Status')
         public String status;
 
-        @InvocableVariable(label='Member First Name')
+        @InvocableVariable(label='Member First Name' required=true)
         public String firstname;
 
-        @InvocableVariable(label='Member Last Name')
+        @InvocableVariable(label='Member Last Name' required=true)
         public String lastname;
 
         @InvocableVariable(label='Custom Field 1: Name')
